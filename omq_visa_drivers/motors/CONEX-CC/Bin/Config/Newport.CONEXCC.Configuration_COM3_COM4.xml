@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Newport.CONEXCC.Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Newport.CONEXCC.Configuration.xsd">
+  <InstrumentInformation PollingInterval="200" NbDigits="6" />
+  <Diagnostics Delay="1000" />
+  <Models>
+    <InstrumentInfo InstrumentType="CONEX-CC" NoOfInstruments="2" XAxis="Instrument 1" YAxis="Instrument 2" CommunicationChannel="VCP" />
+  </Models>
+  <MemorizedPositionRollingBuffer BufferDepth="5" Positions="Position #1;0,000000;23,409301" />
+  <TrackingConfiguration IncrementalStep="0.05" MinimumAmplitudeX="0.001" MaximumAmplitudeX="0" MinimumAmplitudeY="0.001" MaximumAmplitudeY="0" StartedSensibility="4" XDirection="Normal" YDirection="Normal" />
+  <MouseConfiguration>
+    <EnterPositionTracking MouseButton="Middle" MouseEvent="Click" />
+    <ExitPositionTracking MouseButton="Middle" MouseEvent="Click" />
+    <SelectXaxis MouseButton="Left" MouseEvent="Click" />
+    <SelectYaxis MouseButton="Right" MouseEvent="Click" />
+    <IncreaseSensibility MouseButton="Middle" MouseEvent="Wheel up" />
+    <DecreaseSensibility MouseButton="Middle" MouseEvent="Wheel down" />
+    <MemorizeCurrentPosition MouseButton="Left" MouseEvent="Double-Click" />
+  </MouseConfiguration>
+</Newport.CONEXCC.Configuration>

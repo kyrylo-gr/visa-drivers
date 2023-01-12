@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="Direction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Normal" />
+      <xs:enumeration value="Inverse" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Instrument">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Instrument 1" />
+      <xs:enumeration value="Instrument 2" />
+      <xs:enumeration value="None" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="MouseParameters">
+    <xs:attribute name="MouseButton" >
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Left" />
+          <xs:enumeration value="Right" />
+          <xs:enumeration value="Middle" />
+          <xs:enumeration value="XButton1" />
+          <xs:enumeration value="XButton2" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="MouseEvent">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Click" />
+          <xs:enumeration value="Double-Click" />
+          <xs:enumeration value="Wheel down" />
+          <xs:enumeration value="Wheel up" />
+          <xs:enumeration value="Down" />
+          <xs:enumeration value="Up" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="MouseConfiguration">
+    <xs:sequence>
+      <xs:element name="EnterPositionTracking" type="MouseParameters"/>
+      <xs:element name="ExitPositionTracking" type="MouseParameters"/>
+      <xs:element name="SelectXaxis"  type="MouseParameters"/>
+      <xs:element name="SelectYaxis" type="MouseParameters"/>
+      <xs:element name="IncreaseSensibility"  type="MouseParameters"/>
+      <xs:element name="DecreaseSensibility"  type="MouseParameters"/>
+      <xs:element name="MemorizeCurrentPosition"  type="MouseParameters"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Newport.CONEXCC.Configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="InstrumentInformation">
+          <xs:complexType>
+            <xs:attribute name="PollingInterval" type="xs:int" default="200" />
+            <xs:attribute name="NbDigits" type="xs:int" default="6" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Diagnostics">
+          <xs:complexType>
+            <xs:attribute name="Delay" type="xs:int" default="1000" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Models">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="InstrumentInfo">
+                <xs:complexType>
+                  <xs:attribute name="InstrumentType" type="xs:string" default="CONEX-CC" />
+                  <xs:attribute name="NoOfInstruments" type="xs:int" default="2" />
+                  <xs:attribute name="XAxis" type="Instrument" default="Instrument 1"/>
+                  <xs:attribute name="YAxis" type="Instrument" default="Instrument 2"/>
+                  <xs:attribute name="CommunicationChannel" default="VCP">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="USB" />
+                        <xs:enumeration value="VCP" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MemorizedPositionRollingBuffer">
+          <xs:complexType>
+            <xs:attribute name="BufferDepth" type="xs:int" default="5" />
+            <xs:attribute name="Positions" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TrackingConfiguration">
+          <xs:complexType>
+            <xs:attribute name="XDirection" type="Direction" default="Normal"/>
+            <xs:attribute name="YDirection" type="Direction" default="Normal"/>
+            <xs:attribute name="StartedSensibility" type="xs:int" default="1"/>
+            <xs:attribute name="MinimumAmplitudeX" type="xs:double" default="0.001"/>
+            <xs:attribute name="MaximumAmplitudeX" type="xs:double" default="20"/>
+            <xs:attribute name="MinimumAmplitudeY" type="xs:double" default="0.001"/>
+            <xs:attribute name="MaximumAmplitudeY" type="xs:double" default="20"/>
+            <xs:attribute name="IncrementalStep" type="xs:double" default="0.05"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MouseConfiguration" type="MouseConfiguration"/>
+
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
